@@ -1,17 +1,23 @@
+// services/servicoCadastro.js
+
 // Simulação de dados estáticos para clientes, aplicativos e assinaturas
 let clientes = [
-    { codigo: 1, nome: 'Cliente A', email: 'clienteA@example.com' },
-    { codigo: 2, nome: 'Cliente B', email: 'clienteB@example.com' },
-    { codigo: 3, nome: 'Cliente C', email: 'clienteC@example.com' }
+    { codigo: 1, nome: 'Vitor Madalosso', email: 'vitor.madalosso@edu.pucrs.br' },
+    { codigo: 2, nome: 'Bernardo Copstein', email: 'professor@edu.pucrs.br' },
+    { codigo: 3, nome: 'Julio Machado', email: 'professor@edu.pucrs.br' }
 ];
 
 let aplicativos = [
-    { codigo: 1, nome: 'Aplicativo X', custoMensal: 10.99 },
-    { codigo: 2, nome: 'Aplicativo Y', custoMensal: 7.99 },
-    { codigo: 3, nome: 'Aplicativo Z', custoMensal: 5.99 }
+    { codigo: 1, nome: 'Netflix', custoMensal: 10.99 },
+    { codigo: 2, nome: 'HBO Max', custoMensal: 15.99 },
+    { codigo: 3, nome: 'Spotify', custoMensal: 5.99 }
 ];
 
-let assinaturas = [];
+let assinaturas = [
+    { codigo: 1, codCli: 1, codApp: 1, inicioVigencia: new Date(), fimVigencia: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), status: 'ATIVA' },
+    { codigo: 2, codCli: 1, codApp: 2, inicioVigencia: new Date(), fimVigencia: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), status: 'CANCELADA' },
+    { codigo: 3, codCli: 2, codApp: 3, inicioVigencia: new Date(), fimVigencia: new Date(new Date().setFullYear(new Date().getFullYear() + 1)), status: 'ATIVA' }
+];
 
 // Funções para manipular os dados
 function listarClientes() {
@@ -23,12 +29,15 @@ function listarAplicativos() {
 }
 
 function criarAssinatura(codCliente, codAplicativo) {
+    const inicioVigencia = new Date();
+    const fimVigencia = new Date(inicioVigencia.setFullYear(inicioVigencia.getFullYear() + 1));
     const assinatura = {
         codigo: assinaturas.length + 1,
         codCli: codCliente,
         codApp: codAplicativo,
         inicioVigencia: new Date(),
-        fimVigencia: null // A ser preenchido com a lógica adequada
+        fimVigencia: fimVigencia, // Definindo fimVigencia para um ano após inicioVigencia, caso contrario ficaria NULL
+        status: 'ATIVA'
     };
 
     assinaturas.push(assinatura);
@@ -45,8 +54,12 @@ function atualizarCustoAplicativo(idAplicativo, custo) {
 }
 
 function listarAssinaturasPorTipo(tipo) {
-    // Filtrar assinaturas por tipo (assumindo que o tipo pode ser algo a ser derivado dos dados)
-    return assinaturas.filter(assinatura => assinatura.tipo === tipo);
+    if (tipo === 'TODAS') {
+        return assinaturas;
+    } else if (tipo === 'ATIVA' || tipo === 'CANCELADA') {
+        return assinaturas.filter(assinatura => assinatura.status === tipo);
+    }
+    return [];
 }
 
 function listarAssinaturasPorCliente(codcli) {

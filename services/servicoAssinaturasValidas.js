@@ -1,9 +1,11 @@
-import { listarAssinaturasPorTipo } from './servicoCadastro.js';
+// services/servicoAssinaturasValidas.js
 
-// Função para listar assinaturas válidas
-function listarAssinaturasValidas() {
-    const assinaturas = listarAssinaturasPorTipo('validas');
-    return assinaturas;
+import { listarAssinaturasPorCliente } from './servicoCadastro.js';
+
+function listarAssinaturasValidas(codAssinatura) {
+    // Lógica para verificar se uma assinatura é válida
+    const assinatura = listarAssinaturasPorCliente(codAssinatura);
+    return assinatura && !assinatura.fimVigencia ? assinatura : null;
 }
 
 // Exportar a função para uso em outros arquivos

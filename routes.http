@@ -9,8 +9,8 @@ POST http://localhost:3000/servcad/assinaturas
 Content-Type: application/json
 
 {
-    "codigo do cliente": 1,
-    "codigo do aplicativo": 1
+    "codCliente": 1,
+    "codAplicativo": 2
 }
 
 ### Atualizar o custo mensal de um aplicativo
@@ -18,11 +18,17 @@ PATCH http://localhost:3000/servcad/aplicativos/1
 Content-Type: application/json
 
 {
-    "custo": 9.99
+    "custo": 15.99
 }
 
 ### Listar todas as assinaturas vigentes
 GET http://localhost:3000/servcad/assinaturas/TODAS
+
+### Listar assinaturas ativas
+GET http://localhost:3000/servcad/assinaturas/ATIVA
+
+### Listar assinaturas canceladas
+GET http://localhost:3000/servcad/assinaturas/CANCELADA
 
 ### Listar as assinaturas de um cliente específico
 GET http://localhost:3000/servcad/asscli/1
@@ -31,7 +37,7 @@ GET http://localhost:3000/servcad/asscli/1
 GET http://localhost:3000/servcad/assapp/1
 
 ### Registrar um pagamento
-POST http://localhost:3000/registrarpagamento
+POST http://localhost:3000/servcad/registrarpagamento
 Content-Type: application/json
 
 {
@@ -43,4 +49,4 @@ Content-Type: application/json
 }
 
 ### Verificar se uma assinatura é válida
-GET http://localhost:3000/assinvalidas/1
+GET http://localhost:3000/servcad/assinvalidas/1
