@@ -20,14 +20,18 @@ let assinaturas = [
 ];
 
 // Funções para manipular os dados
+
+// Função para listar clientes
 function listarClientes() {
     return clientes;
 }
 
+// Função para listar aplicativos
 function listarAplicativos() {
     return aplicativos;
 }
 
+// Função para criar uma nova assinatura
 function criarAssinatura(codCliente, codAplicativo) {
     const inicioVigencia = new Date();
     const fimVigencia = new Date(inicioVigencia.setFullYear(inicioVigencia.getFullYear() + 1));
@@ -44,6 +48,7 @@ function criarAssinatura(codCliente, codAplicativo) {
     return assinatura;
 }
 
+// Função para atualizar o custo de um aplicativo
 function atualizarCustoAplicativo(idAplicativo, custo) {
     const aplicativo = aplicativos.find(app => app.codigo == idAplicativo);
     if (aplicativo) {
@@ -53,6 +58,7 @@ function atualizarCustoAplicativo(idAplicativo, custo) {
     return null;
 }
 
+// Função para listar assinaturas por tipo
 function listarAssinaturasPorTipo(tipo) {
     if (tipo === 'TODAS') {
         return assinaturas;
@@ -62,10 +68,12 @@ function listarAssinaturasPorTipo(tipo) {
     return [];
 }
 
+// Função para listar assinaturas por cliente
 function listarAssinaturasPorCliente(codcli) {
     return assinaturas.filter(assinatura => assinatura.codCli == codcli);
 }
 
+// Função para listar assinaturas por aplicativo
 function listarAssinaturasPorAplicativo(codapp) {
     return assinaturas.filter(assinatura => assinatura.codApp == codapp);
 }

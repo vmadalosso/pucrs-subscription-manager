@@ -6,7 +6,15 @@ let pagamentos = [];
 // EventEmitter para emitir eventos
 const pagamentoEmitter = new EventEmitter();
 
-// Função para processar pagamento
+/**
+ * Função para processar pagamento
+ * @param {number} dia - O dia do pagamento
+ * @param {number} mes - O mês do pagamento
+ * @param {number} ano - O ano do pagamento
+ * @param {number} codass - O código da assinatura relacionada ao pagamento
+ * @param {number} valorPago - O valor pago
+ * @returns {object} O pagamento processado
+ */
 function processarPagamento(dia, mes, ano, codass, valorPago) {
     const pagamento = {
         codigo: pagamentos.length + 1,
@@ -27,7 +35,10 @@ function processarPagamento(dia, mes, ano, codass, valorPago) {
     return pagamento;
 }
 
-// Função para calcular total faturado
+/**
+ * Função para calcular o total faturado
+ * @returns {number} O total faturado
+ */
 function calcularTotalFaturado() {
     return pagamentos.reduce((total, pagamento) => total += pagamento.valorPago, 0);
 }
