@@ -1,4 +1,4 @@
-<h1 align="center">Projeto Desenvolvimento de Sistemas Back-End</h1>
+<h1 align="center">Gerenciamento de Assinaturas e Pagamentos</h1>
 
 <p align="center">
 Projeto individual para a disciplina Desenvolvimento de Sistemas Back-End - PUCRS<br/>Aluno: Vitor Madalosso<br/>
@@ -25,48 +25,76 @@ Projeto individual para a disciplina Desenvolvimento de Sistemas Back-End - PUCR
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
 
-- Node.js + Fastify
-- Git + GitHub
-- VSCode + REST Client
+- Node.js + Fastify: Framework para construção dos microserviços.
+- Git + GitHub: Controle de versão.
+- VSCode + REST Client: Ambiente de desenvolvimento e ferramenta para testes de API.
 
 ## 💻 Projeto
 
-Nos dias de hoje é comum o surgimento de startups baseadas em aplicativos para celular. Muitas vezes, uma boa ideia se transforma em um aplicativo de sucesso, alavancando pequenas empresas para o sucesso rápido.
+Nos dias de hoje, o mercado de aplicativos para celular está em expansão, e muitas startups têm conseguido sucesso rápido com boas ideias e aplicativos baseados em assinaturas. Neste contexto, a proposta deste projeto é criar um sistema que gerencie assinaturas e pagamentos de forma eficiente.
 
-Considere uma startup que trabalha com o modelo de assinaturas. Neste modelo, o cliente pode baixar os aplicativos gratuitamente na loja, porém eles só funcionam se o cliente tiver uma assinatura paga. Em função disso, todo o mês, é necessário levantar a lista dos clientes que devem ser cobrados, assim como aqueles que devem ter suas assinaturas canceladas por falta de pagamento.
+<h3>Objetivo Geral</h3>
 
-O objetivo geral deste trabalho é criar um sistema que auxilie na gestão das assinaturas dos aplicativos. Para tanto, o sistema deve ser capaz de manter a lista de assinaturas de cada cliente, a situação das assinaturas, gerar lista de cobrança e, mais importante, responder para os aplicativos sempre que eles questionarem se a assinatura continua ativa ou se eles devem bloquear. O detalhamento deste contexto, bem como dos requisitos do sistema encontra-se em documento complementar (arquivo “Especificacao_Projeto_DesSistBackend.pdf”).
+Desenvolver um sistema para a gestão de assinaturas de aplicativos que permita:
 
-Como objetivos específicos, busca-se aplicar conhecimentos para modelar e implementar um serviço usando a arquitetura limpa proposta por Robert Martin e integrar este serviço com dois microserviços auxiliares usando tanto comunicação síncrona como por filas.
+- Manter a lista de assinaturas de cada cliente.
+- Gerar listas de cobrança e gerenciar o status das assinaturas.
+- Fornecer informações sobre a validade das assinaturas para aplicativos, decidindo se devem continuar funcionando ou se devem ser bloqueados.
 
-O projeto é individual e está dividido em duas fases descritas a seguir neste documento.
+<h3>Objetivos Específicos</h3>
 
-Durante a avaliação, serão seguidos os critérios abaixo:</br>
-• Códigos que não estejam em JavaScript ou estejam com erros de sintaxe não serão avaliados.</br>
-• O programa deve atender aos itens especificados.</br>
-• O código de programa deve estar organizado, ser legível e estar comentado.
+- Aplicar conhecimentos de arquitetura limpa proposta por Robert Martin.
+- Implementar a comunicação entre microserviços, tanto de forma síncrona quanto assíncrona.
+- Integrar serviços utilizando uma API Gateway.
 
 ## 🔖 Execução
 
-Clone - Para clonar o repositório utilize o comando abaixo:
+<h3>Clone o repositório</h3>
+Para clonar o repositório, utilize o comando abaixo:
 
 ```
 git clone https://github.com/vmadalosso/pucrs-subscription-manager.git
 ```
 
-Instalação das dependências - Acessar o diretório (/pucrs-subscription-manager) e executar o comando abaixo em cada um dos 3 diretórios:
+<h3>Instalação das dependências</h3>
+Acesse o diretório /pucrs-subscription-manager e, em seguida, entre nos diretórios de cada microserviço para instalar as dependências:
 
 ```
-npm i
+cd servico-cadastro
+npm install
+cd ../servico-assinaturas-validas
+npm install
+cd ../servico-pagamento
+npm install
+cd ../api-gateway
+npm install
 ```
 
-Execução - Basta inicializar o servidor com o comando abaixo (está configurado na porta 3000):
+<h3>Execução dos Serviços</h3>
+Inicialize cada serviço em uma aba separada do terminal:
 
 ```
-node index.js
+cd servico-cadastro
+npm start
 ```
 
-Testes dos endpoints - Utilizo o plugin REST Client dentro do próprio VSCode, com ele podemos executar os requests de GET, POST, PATCH e etc dentro do mesmo, sem necessidade de configurar no Insomnia ou Postman. Mais explicações no PDF que está anexado aos demais arquivos entregues pela plataforma da PUCRS Online.
+```
+cd servico-assinaturas-validas
+npm start
+```
+
+```
+cd servico-pagamento
+npm start
+```
+
+```
+cd api-gateway
+npm start
+```
+
+<h3>Testes dos Endpoints</h3>
+Para testar os endpoints, utilize o plugin REST Client dentro do VSCode. Com ele, você pode executar requisições GET, POST, PATCH, e outros, diretamente no VSCode, sem necessidade de configurar ferramentas como Insomnia ou Postman. Mais detalhes estão disponíveis no PDF anexado aos arquivos entregues pela plataforma da PUCRS Online.
 
 <img alt="PUCRS" src=".github/routes-http.jpeg" width="100%">
 
